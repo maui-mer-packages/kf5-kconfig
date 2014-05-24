@@ -17,6 +17,10 @@ Provides:
     - kf5-kconfig-core%{?_isa} = %{version}-%{release}
     - kf5-kconfig-gui%{?_isa} = %{version}-%{release}
 
+RpmLintIgnore:
+    - devel-file-in-non-devel-package
+    - no-changelogname-tag
+
 Configure    : none
 Builder      : none
 
@@ -35,6 +39,11 @@ PkgConfigBR:
     - Qt5Test
 Requires:
     - kf5-filesystem
+
+RequiresPost:
+    - /sbin/ldconfig
+RequiresPostUn:
+    - /sbin/ldconfig
 
 Files:
     - "%{_kf5_bindir}/kreadconfig5"
@@ -70,6 +79,10 @@ SubPackages:
         `kconfig_compiler` to generate classes to read and write configuration entries.
 
         - lock-down (kiosk) support.
+      RequiresPost:
+          - /sbin/ldconfig
+      RequiresPostUn:
+          - /sbin/ldconfig
       Files:
           - "%{_kf5_includedir}/kconfig_version.h"
           - "%{_kf5_includedir}/KConfigCore"
@@ -86,6 +99,10 @@ SubPackages:
         KConfigGui provides a way to hook widgets to the configuration so that they are
         automatically initialized from the configuration and automatically propagate
         their changes to their respective configuration files.
+      RequiresPost:
+          - /sbin/ldconfig
+      RequiresPostUn:
+          - /sbin/ldconfig
       Requires:
           - kf5-kconfig-core%{?_isa} = %{version}-%{release}
       Files:

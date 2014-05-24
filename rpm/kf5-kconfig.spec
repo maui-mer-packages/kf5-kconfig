@@ -16,7 +16,10 @@ License:    GPLv2+
 URL:        http://www.kde.org
 Source0:    %{name}-%{version}.tar.xz
 Source100:  kf5-kconfig.yaml
+Source101:  kf5-kconfig-rpmlintrc
 Requires:   kf5-filesystem
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Xml)
@@ -50,6 +53,8 @@ that use %{name}.
 Summary:    Non-GUI part of KConfig framework
 Group:      System/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
 
 %description core
 KConfigCore provides access to the configuration files themselves. It features:
@@ -65,6 +70,8 @@ Summary:    GUI part of KConfig framework
 Group:      System/Libraries
 Requires:   %{name} = %{version}-%{release}
 Requires:   kf5-kconfig-core%{?_isa} = %{version}-%{release}
+Requires(post): /sbin/ldconfig
+Requires(postun): /sbin/ldconfig
 
 %description gui
 KConfigGui provides a way to hook widgets to the configuration so that they are
