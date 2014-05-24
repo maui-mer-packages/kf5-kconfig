@@ -20,6 +20,8 @@ Provides:
 RpmLintIgnore:
     - devel-file-in-non-devel-package
     - no-changelogname-tag
+    - library-without-ldconfig-postin
+    - library-without-ldconfig-postun
 
 Configure    : none
 Builder      : none
