@@ -116,8 +116,8 @@ rm -rf %{buildroot}
 %{_kf5_libdir}/libKF5ConfigCore.so
 %{_kf5_libdir}/libKF5ConfigGui.so
 %{_kf5_libdir}/cmake/KF5Config
-%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigCore.pri
-%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigGui.pri
+%{_datadir}/qt5/mkspecs/modules/qt_KConfigCore.pri
+%{_datadir}/qt5/mkspecs/modules/qt_KConfigGui.pri
 # >> files devel
 # << files devel
 
@@ -129,8 +129,8 @@ rm -rf %{buildroot}
 %{_kf5_libdir}/libKF5ConfigCore.so
 %{_kf5_libdir}/libKF5ConfigGui.so
 %{_kf5_libdir}/cmake/KF5Config
-%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigCore.pri
-%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigGui.pri
+%{_datadir}/qt5/mkspecs/modules/qt_KConfigCore.pri
+%{_datadir}/qt5/mkspecs/modules/qt_KConfigGui.pri
 # >> files core
 # << files core
 
