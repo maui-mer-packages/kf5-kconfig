@@ -1,0 +1,92 @@
+Name         : kf5-kconfig
+Version      : 4.99.0
+Release      : 1
+Group        : System/Base
+License      : GPLv2+
+Summary      : KDE Frameworks 5 Tier 1 addon with advanced configuration system
+Description  : |
+  KDE Frameworks 5 Tier 1 addon with advanced configuration system made of two parts:
+  KConfigCore and KConfigGui.
+URL          : http://www.kde.org
+SetupOptions : -q -n %{name}-%{version}/upstream
+
+Sources:
+    - "%{name}-%{version}.tar.xz"
+
+Provides:
+    - kf5-kconfig-core%{?_isa} = %{version}-%{release}
+    - kf5-kconfig-gui%{?_isa} = %{version}-%{release}
+
+Configure    : none
+Builder      : none
+
+PkgBR:
+    - kf5-rpm-macros
+    - extra-cmake-modules
+    - qt5-tools
+PkgConfigBR:
+    - Qt5Core
+    - Qt5DBus
+    - Qt5Xml
+    - Qt5Network
+    - Qt5Gui
+    - Qt5Widgets
+    - Qt5Concurrent
+    - Qt5Test
+Requires:
+    - kf5-filesystem
+
+Files:
+    - "%{_kf5_bindir}/kreadconfig5"
+    - "%{_kf5_bindir}/kwriteconfig5"
+    - "%{_kf5_bindir}/kconfig_compiler_kf5"
+    - "%{_kf5_libdir}/libKF5ConfigCore.so.*"
+    - "%{_kf5_libexecdir}/kconf_update"
+FilesInput: kconfig5_qt.lang
+
+SubPackages:
+    - Name: devel
+      Group: Development/Libraries
+      Summary: Development files for %{name}
+      Description: |
+        The %{name}-devel package contains the files necessary to develop applications |
+        that use %{name}.
+      Files:
+          - "%{_kf5_includedir}/kconfig_version.h"
+          - "%{_kf5_includedir}/KConfigCore"
+          - "%{_kf5_includedir}/KConfigGui"
+          - "%{_kf5_libdir}/libKF5ConfigCore.so"
+          - "%{_kf5_libdir}/libKF5ConfigGui.so"
+          - "%{_kf5_libdir}/cmake/KF5Config"
+          - "%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigCore.pri"
+          - "%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigGui.pri"
+    - Name: core
+      Group: System/Libraries
+      Summary: Non-GUI part of KConfig framework
+      Description: |
+        KConfigCore provides access to the configuration files themselves. It features:
+
+        - centralized definition: define your configuration in an XML file and use
+        `kconfig_compiler` to generate classes to read and write configuration entries.
+
+        - lock-down (kiosk) support.
+      Files:
+          - "%{_kf5_includedir}/kconfig_version.h"
+          - "%{_kf5_includedir}/KConfigCore"
+          - "%{_kf5_includedir}/KConfigGui"
+          - "%{_kf5_libdir}/libKF5ConfigCore.so"
+          - "%{_kf5_libdir}/libKF5ConfigGui.so"
+          - "%{_kf5_libdir}/cmake/KF5Config"
+          - "%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigCore.pri"
+          - "%{_kf5_archdatadir}/mkspecs/modules/qt_KConfigGui.pri"
+    - Name: gui
+      Group: System/Libraries
+      Summary: GUI part of KConfig framework
+      Description: |
+        KConfigGui provides a way to hook widgets to the configuration so that they are
+        automatically initialized from the configuration and automatically propagate
+        their changes to their respective configuration files.
+      Requires:
+          - kf5-kconfig-core%{?_isa} = %{version}-%{release}
+      Files:
+          - "%{_kf5_libdir}/libKF5ConfigGui.so.*"
