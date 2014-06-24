@@ -13,10 +13,6 @@ SetupOptions : -q -n %{name}-%{version}/upstream
 Sources:
     - "%{name}-%{version}.tar.xz"
 
-Provides:
-    - kf5-kconfig-core%{?_isa} = %{version}-%{release}
-    - kf5-kconfig-gui%{?_isa} = %{version}-%{release}
-
 RpmLintIgnore:
     - devel-file-in-non-devel-package
     - no-changelogname-tag
@@ -62,6 +58,9 @@ SubPackages:
       Description: |
         The %{name}-devel package contains the files necessary to develop applications |
         that use %{name}.
+      Requires:
+          - "%{name}-core%{?_isa} = %{version}-%{release}"
+          - "%{name}-gui%{?_isa} = %{version}-%{release}"
       Files:
           - "%{_kf5_includedir}/kconfig_version.h"
           - "%{_kf5_includedir}/KConfigCore"
@@ -106,6 +105,6 @@ SubPackages:
       RequiresPostUn:
           - /sbin/ldconfig
       Requires:
-          - kf5-kconfig-core%{?_isa} = %{version}-%{release}
+          - "%{name}-core%{?_isa} = %{version}-%{release}"
       Files:
           - "%{_kf5_libdir}/libKF5ConfigGui.so.*"

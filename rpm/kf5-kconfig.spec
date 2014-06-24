@@ -31,8 +31,6 @@ BuildRequires:  pkgconfig(Qt5Test)
 BuildRequires:  kf5-rpm-macros
 BuildRequires:  extra-cmake-modules
 BuildRequires:  qt5-tools
-Provides:   kf5-kconfig-core%{?_isa} = %{version}-%{release}
-Provides:   kf5-kconfig-gui%{?_isa} = %{version}-%{release}
 
 %description
 KDE Frameworks 5 Tier 1 addon with advanced configuration system made of two parts:
@@ -43,6 +41,8 @@ KConfigCore and KConfigGui.
 Summary:    Development files for %{name}
 Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
+Requires:   %{name}-core%{?_isa} = %{version}-%{release}
+Requires:   %{name}-gui%{?_isa} = %{version}-%{release}
 
 %description devel
 The %{name}-devel package contains the files necessary to develop applications |
@@ -69,7 +69,7 @@ KConfigCore provides access to the configuration files themselves. It features:
 Summary:    GUI part of KConfig framework
 Group:      System/Libraries
 Requires:   %{name} = %{version}-%{release}
-Requires:   kf5-kconfig-core%{?_isa} = %{version}-%{release}
+Requires:   %{name}-core%{?_isa} = %{version}-%{release}
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
